@@ -1,26 +1,429 @@
 @import "tailwindcss";
 
+/* Editorial Design System */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Colors - Light Mode (Default) */
+  --color-ink: #121212;
+  --color-ink-light: #333333;
+  --color-ink-muted: #666666;
+  --color-ink-faint: #999999;
+  --color-paper: #FFFFFF;
+  --color-paper-alt: #F7F7F7;
+  --color-border: #E5E5E5;
+  --color-border-dark: #CCCCCC;
+  --color-accent: #C41E3A;
+  /* Classic editorial red */
+  --color-accent-hover: #A01830;
+  --color-link: #1A5F7A;
+  --color-link-hover: #0D3D50;
+
+  /* Category Colors */
+  --color-politics: #DC2626;
+  --color-world: #2563EB;
+  --color-business: #059669;
+  --color-sports: #D97706;
+  --color-technology: #7C3AED;
+  --color-opinion: #0891B2;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  /* Content widths */
+  --content-width: 1280px;
+  --article-width: 720px;
 }
 
+/* Theme Configuration for Tailwind v4 */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: var(--color-ink);
+  --color-ink-light: var(--color-ink-light);
+  --color-ink-muted: var(--color-ink-muted);
+  --color-ink-faint: var(--color-ink-faint);
+  --color-paper: var(--color-paper);
+  --color-paper-alt: var(--color-paper-alt);
+  --color-border: var(--color-border);
+  --color-accent: var(--color-accent);
+  --color-link: var(--color-link);
+
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  margin: 0;
+  padding: 0;
+}
+
+/* Typography Hierarchy */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5,
+h6 {
+  font-size: 1rem;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--color-ink-light);
+}
+
+/* Article Body Typography */
+.article-body {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: var(--color-ink-light);
+}
+
+.article-body p {
+  margin: 0 0 1.5rem;
+}
+
+.article-body h2 {
+  font-size: 1.5rem;
+  margin: 2.5rem 0 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.article-body h3 {
+  font-size: 1.25rem;
+  margin: 2rem 0 0.75rem;
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.article-body li {
+  margin-bottom: 0.5rem;
+}
+
+.article-body blockquote {
+  font-style: italic;
+  font-size: 1.25rem;
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid var(--color-accent);
+  background-color: var(--color-paper-alt);
+  color: var(--color-ink-muted);
+}
+
+/* Utility Classes */
+.container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+.divider {
+  border: 0;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--space-lg) 0;
+}
+
+.divider-thick {
+  height: 3px;
+  background-color: var(--color-ink);
+}
+
+/* Category Badge */
+.category-badge {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.category-badge--politics {
+  color: var(--color-politics);
+}
+
+.category-badge--world {
+  color: var(--color-world);
+}
+
+.category-badge--business {
+  color: var(--color-business);
+}
+
+.category-badge--sports {
+  color: var(--color-sports);
+}
+
+.category-badge--technology {
+  color: var(--color-technology);
+}
+
+.category-badge--opinion {
+  color: var(--color-opinion);
+}
+
+/* Timestamp */
+.timestamp {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-ink-faint);
+}
+
+/* Author Byline */
+.byline {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+
+.byline a {
+  color: var(--color-ink);
+  font-weight: 500;
+}
+
+.byline a:hover {
+  color: var(--color-link);
+}
+
+/* Article Card Headline */
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--color-ink);
+  transition: color 0.15s ease;
+}
+
+.headline:hover {
+  color: var(--color-ink-light);
+}
+
+.headline--hero {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.headline--featured {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.headline--standard {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.headline--compact {
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+/* Summary Text */
+.summary {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-ink-muted);
+}
+
+/* Section Header */
+.section-header {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-ink);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-ink);
+  margin-bottom: 1.5rem;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-ink-light);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+}
+
+/* Image Styles */
+.article-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.article-image-caption {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-ink-faint);
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Navigation */
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+.nav-link:hover,
+.nav-link--active {
+  border-color: var(--color-ink);
+}
+
+/* Focus States */
+:focus-visible {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-paper);
+}
+
+/* Print Styles */
+@media print {
+  body {
+    font-size: 12pt;
+    color: black;
+    background: white;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .article-body {
+    font-size: 11pt;
+  }
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
