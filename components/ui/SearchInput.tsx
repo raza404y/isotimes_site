@@ -22,9 +22,6 @@ export default function SearchInput({
         if (query.trim()) {
             router.push(`/search?q=${encodeURIComponent(query.trim())}`);
         }
-
-        //asdasdasd
-
     };
 
     return (
