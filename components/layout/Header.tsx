@@ -40,7 +40,7 @@ export default function Header() {
 
             {/* Main Header - Logo */}
             <div className="border-b border-gray-200">
-                <div className="container py-4 md:py-6 text-center">
+                <div className="container py-4 md:py-6 flex justify-end">
                     <Link href="/" className="inline-block">
                         <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900">
                             <span className="text-red-700">Iso</span>Times
