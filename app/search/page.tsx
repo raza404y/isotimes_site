@@ -1,5 +1,8 @@
 import { Metadata } from 'next';
 import Container from '@/components/layout/Container';
+
+// Required for Cloudflare Pages deployment
+export const runtime = 'edge';
 import ArticleCard from '@/components/article/ArticleCard';
 import SearchInput from '@/components/ui/SearchInput';
 import { searchArticles } from '@/lib/data';
